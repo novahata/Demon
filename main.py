@@ -8,12 +8,12 @@ from kivy.uix.label import Label
 class ChatApp(App):
 
     def build(self):
-        # 🔥 список для збереження всієї історії діалогу
+        # список для збереження всієї історії діалогу
         self.messages = []
 
         return super().build()
 
-    # --- ВІДПРАВКА ПОВІДОМЛЕННЯ ---
+    # ВІДПРАВКА ПОВІДОМЛЕННЯ
     def send_message(self):
         user_text = self.root.ids.user_input.text.strip()
 
@@ -44,7 +44,7 @@ class ChatApp(App):
         # виклик без блокування UI
         Clock.schedule_once(lambda dt: self.get_response(), 0.1)
 
-    # --- ДОДАВАННЯ ПОВІДОМЛЕННЯ ---
+    # ДОДАВАННЯ ПОВІДОМЛЕННЯ
     def add_message(self, text, color=(0, 0, 0, 1)):
         chat_layout = self.root.ids.chat_layout
 
