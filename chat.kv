@@ -1,0 +1,64 @@
+BoxLayout:
+    orientation: "vertical"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: "fon_1.jpeg"
+    
+        Color:
+            rgba: 0, 0, 0, 0.3   # затемнення
+    
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    # --- ВЕРХНЯ ПАНЕЛЬ (input + кнопка) ---
+    BoxLayout:
+        size_hint_y: 0.17
+        
+
+        TextInput:
+            id: user_input
+            multiline: True
+            size_hint_x: 0.83
+
+            # вирівнювання тексту
+            halign: "left"
+            valign: "top"
+
+            # скрол
+            scroll_y: 0
+
+            # Enter не переносить, а відправляє
+            on_text_validate: app.send_message()
+
+            # щоб працювало valign
+            text_size: self.width, None
+
+            font_size: "16sp"
+
+        Button:
+            text: "Send"
+            size_hint_x: 0.20
+            on_press: app.send_message()
+
+    # --- ОБЛАСТЬ ВИВОДУ ---
+    ScrollView:
+        id: scroll
+
+        GridLayout:
+            id: chat_layout
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            spacing: 10
+            padding: 20
+
+            # 🔥 БІЛИЙ ФОН
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
